@@ -12,12 +12,10 @@ class Child {
 
     createChild() {
         const div = document.createElement('div');
+        div.classList.add('child');
         div.style.width = this.width;
         div.style.height = this.height;
         div.style.backgroundColor = this.color;
-        div.style.position = 'absolute';
-        div.style.cursor = 'grab';
-        div.style.touchAction = 'none';
         return div;
     }
 
@@ -43,8 +41,8 @@ class Child {
     onPointerMove(event) {
         if (this.isDragging) {
             const backgroundRect = this.parent.getElement().getBoundingClientRect();
-            let newX = event.clientX - this.offsetX;
-            let newY = event.clientY - this.offsetY;
+            let newX = event.clientX - backgroundRect.left - this.offsetX;
+            let newY = event.clientY - backgroundRect.top - this.offsetY;
 
             newX = Math.max(0, Math.min(newX, backgroundRect.width - parseInt(this.width)));
             newY = Math.max(0, Math.min(newY, backgroundRect.height - parseInt(this.height)));
@@ -56,7 +54,6 @@ class Child {
 
     setParent(parent) {
         this.parent = parent;
-        // console.log('aaa');
         this.initEvents();
     }
 

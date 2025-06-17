@@ -10,10 +10,25 @@ body {
     width: 100%;
 }
 
-.background {
-    width: 100%;
+#container {
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 10px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.background {
+    flex-grow: 1;
     background-color: lightblue;
+    position: relative;
+    width: 300px;
+    min-width: 50px;
+    min-height: 50px;
+    border: 1px solid black;
 }
 
 .child {
@@ -21,8 +36,8 @@ body {
     height: 50px;
     background-color: red;
     cursor: grab;
-}
-
-.child:active {
-    cursor: grabbing;
+    position: absolute;
+    top: 0;
+    left: 0;
+    touch-action: none;
 }
